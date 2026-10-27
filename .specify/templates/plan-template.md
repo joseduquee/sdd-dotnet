@@ -1,113 +1,119 @@
-# Implementation Plan: [FEATURE]
+# Plan de implementación: [NOMBRE DE LA INICIATIVA]
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
+**Rama**: `[NNN-nombre]` | **Fecha**: [AAAA-MM-DD] | **Spec**: [Ruta a spec.md]
 
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Entrada**: `specs/NNN-nombre/spec.md` aprobada.
 
-**Note**: This template is filled in by the `/speckit.plan` command; its definition describes the execution workflow.
+Este documento se completa mediante `speckit.plan`. Si no existe `spec.md`, detenerse:
+`Ejecución detenida: antes de ejecutar speckit.plan debe crear el archivo spec.md mediante speckit.specify.`
 
-## Summary
+## Resumen
 
-[Extract from feature spec: primary requirement + technical approach from research]
+[Necesidad aprobada, alcance y enfoque técnico. No agregar funcionalidad ajena a la spec.]
 
-## Technical Context
+## Contexto técnico
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+**Plataforma**: .NET 11 y C#; [versión exacta del SDK y compatibilidad de paquetes].
+**Backend**: ASP.NET Core Minimal APIs con Vertical Slice Architecture.
+**Frontend**: Blazor Web App con Razor Components; [modo de renderizado y justificación].
+**Comunicación**: Refit; [contratos DTO y límites entre proyectos].
+**Persistencia**: EF Core, PostgreSQL y Npgsql; [cambios aplicables o no aplica].
+**Estilos**: CSS propio en `wwwroot/app.css`; Lucide Icons cuando corresponda.
+**Dependencias nuevas**: [Versiones, necesidad real y compatibilidad; ninguna si no aplica].
+**Validación**: [Compilación, aceptación y pruebas aprobadas; herramientas y alcance].
+**Despliegue**: [Entorno, configuración externa y restricciones].
+**Rendimiento y escala**: [Objetivos medibles derivados de la spec; sin cifras inventadas].
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]
+## Comprobación constitucional
 
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]
+Este control DEBE realizarse antes de investigar y repetirse al finalizar el diseño.
+Cada punto DEBE registrar evidencia o justificar por qué no aplica. Un incumplimiento
+bloquea la implementación; documentarlo no autoriza una excepción.
 
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
+- [ ] I. Spec aprobada, tres artefactos canónicos y orden numérico respetado.
+- [ ] II. Minimal APIs por caso de uso; contratos, validación, handlers y OpenAPI definidos.
+- [ ] III. Proyecto Blazor separado, Refit, sin acceso a EF Core desde frontend y CSS propio.
+- [ ] IV. Configuraciones EF Core separadas, migraciones coherentes y seeds idempotentes si aplican.
+- [ ] V. Alcance mínimo, dependencias justificadas, seguridad y verificaciones observables.
+- [ ] Documentación propia íntegramente en español y stack obligatorio sin sustituciones.
+- [ ] Incumplimientos heredados que afecten esta iniciativa resueltos antes de implementar.
 
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]
+**Resultado inicial**: [Conforme o bloqueado; evidencias].
+**Resultado posterior al diseño**: [Conforme o bloqueado; evidencias].
 
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
+## Investigación y decisiones
 
-**Project Type**: [e.g., library/cli/web-service/mobile-app/compiler/desktop-app or NEEDS CLARIFICATION]
+[Registrar aquí las alternativas evaluadas, decisiones, razones y dudas resueltas.
+No generar un documento de investigación adicional.]
 
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]
+## Diseño por casos de uso
 
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]
+### Slices del backend
 
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+| Caso de uso | Ruta del slice | Endpoint | Handler y validación | Requisito |
+|------------|----------------|----------|----------------------|-----------|
+| [Nombre] | [Ruta concreta] | [Método y ruta HTTP] | [Responsabilidades] | [RF-NNN] |
 
-## Constitution Check
+### Contratos HTTP
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+[Documentar aquí solicitudes, respuestas DTO, códigos de estado, ProblemDetails,
+autorización y metadatos OpenAPI por endpoint; sin generar una carpeta de contratos.]
 
-[Gates determined based on constitution file]
+### Frontend
 
-## Project Structure
+[Rutas de páginas y componentes, cliente Refit, modo de renderizado, estados de carga,
+vacío, error y éxito, navegación accesible y comportamiento en escritorio y móvil.]
 
-### Documentation (this feature)
+### Modelo de datos y persistencia
+
+[Entidades, relaciones, restricciones, índices y configuraciones IEntityTypeConfiguration<T>.
+Definir migración coherente, seeds aprobados y mecanismo centralizado de arranque.
+Documentar permisos, concurrencia y fallos; indicar no aplica cuando corresponda.]
+
+### Seguridad y diagnóstico
+
+[Validación en backend, autorización aprobada, secretos externos, logs estructurados
+y tratamiento de errores sin exponer información sensible.]
+
+## Estructura del proyecto
+
+### Documentación de la iniciativa
 
 ```text
-specs/[###-feature]/
-├── plan.md              # This file (/speckit.plan command output)
-├── research.md          # Phase 0 output (/speckit.plan command)
-├── data-model.md        # Phase 1 output (/speckit.plan command)
-├── quickstart.md        # Phase 1 output (/speckit.plan command)
-├── contracts/           # Phase 1 output (/speckit.plan command)
-└── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
+specs/NNN-nombre/
+├── spec.md
+├── plan.md
+└── tasks.md
 ```
 
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+La iniciativa DEBE contener exactamente esos tres archivos. `speckit.plan` no crea
+`tasks.md`; lo genera la fase posterior `speckit.tasks`.
+
+### Código fuente
+
+El backend DEBE ubicarse en `app/backend/` y el frontend en `app/frontend/`.
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+app/
+├── backend/
+│   ├── src/
+│   └── tests/
+└── frontend/
+    ├── src/
+    └── tests/
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+[Precisar los proyectos y rutas reales de slices, infraestructura y componentes.
+Las carpetas de pruebas solo se crean si están aprobadas; este árbol no las autoriza.]
 
-## Complexity Tracking
+## Verificación y ejecución local
 
-> **Fill ONLY if Constitution Check has violations that must be justified**
+[Incluir aquí los prerrequisitos, configuración sin secretos, comandos compatibles con
+el repositorio, comprobaciones de aceptación y evidencia esperada. Las pruebas de
+integración y su infraestructura requieren aprobación explícita en spec, plan y tareas.]
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+## Complejidad y bloqueos
+
+| Decisión o incumplimiento | Necesidad e impacto | Alternativa simple | Resolución requerida |
+|--------------------------|---------------------|--------------------|----------------------|
+| [Descripción o ninguno] | [Evidencia] | [Evaluación] | [Decisión humana o tarea previa] |

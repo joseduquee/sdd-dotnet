@@ -1,131 +1,97 @@
-# Feature Specification: [FEATURE NAME]
+# Especificación: [NOMBRE DE LA INICIATIVA]
 
-**Feature Branch**: `[###-feature-name]`
+**Rama**: `[NNN-nombre]`
 
-**Created**: [DATE]
+**Creación**: [AAAA-MM-DD]
 
-**Status**: Draft
+**Estado**: Borrador
 
-**Input**: User description: "$ARGUMENTS"
+**Entrada**: Descripción del usuario: "$ARGUMENTS"
 
-## User Scenarios & Testing *(mandatory)*
+## Alcance y límites
 
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
+**Objetivo**: [Problema concreto y personas beneficiadas].
+**Incluido**: [Comportamientos aprobados].
+**Excluido**: [Límites explícitos para evitar funcionalidad especulativa].
 
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
+Esta iniciativa DEBE respetar `.specify/memory/constitution.md`. La documentación
+DEBE residir en `specs/NNN-nombre/` y contener exactamente `spec.md`, `plan.md` y
+`tasks.md`, generados en las fases correspondientes. La spec define el comportamiento;
+las decisiones técnicas y los contratos detallados se documentan en `plan.md`.
 
-### User Story 1 - [Brief Title] (Priority: P1)
+## Historias de usuario y aceptación
 
-[Describe this user journey in plain language]
+Las historias DEBEN priorizarse y poder verificarse de forma independiente.
+Agregar o quitar historias según el alcance real, sin conservar ejemplos vacíos.
 
-**Why this priority**: [Explain the value and why it has this priority level]
+### Historia US1 - [Título breve] (Prioridad: P1)
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
+[Describir el recorrido del usuario y su resultado observable].
 
-**Acceptance Scenarios**:
+**Justificación de prioridad**: [Valor y motivo de su orden].
+**Verificación independiente**: [Acciones y resultado que demuestran el cumplimiento].
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
+**Escenarios de aceptación**:
 
----
+1. **Dado** [estado inicial], **cuando** [acción], **entonces** [resultado comprobable].
+2. **Dado** [entrada inválida o fallo], **cuando** [acción], **entonces** [respuesta esperada].
 
-### User Story 2 - [Brief Title] (Priority: P2)
+### Historia US2 - [Título breve] (Prioridad: P2)
 
-[Describe this user journey in plain language]
+[Describir el recorrido del usuario y su resultado observable].
 
-**Why this priority**: [Explain the value and why it has this priority level]
+**Justificación de prioridad**: [Valor y motivo de su orden].
+**Verificación independiente**: [Acciones y resultado que demuestran el cumplimiento].
 
-**Independent Test**: [Describe how this can be tested independently]
+**Escenarios de aceptación**:
 
-**Acceptance Scenarios**:
+1. **Dado** [estado inicial], **cuando** [acción], **entonces** [resultado comprobable].
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+### Casos límite
 
----
+- [Comportamiento ante entradas inválidas o límites del dominio].
+- [Comportamiento ante falta de datos, fallos de comunicación o acceso no autorizado si aplica].
 
-### User Story 3 - [Brief Title] (Priority: P3)
+## Requisitos
 
-[Describe this user journey in plain language]
+### Requisitos funcionales
 
-**Why this priority**: [Explain the value and why it has this priority level]
+- **RF-001**: El sistema DEBE [capacidad concreta y verificable].
+- **RF-002**: El sistema DEBE [validación o regla de negocio observable].
+- **RF-003**: El usuario DEBE poder [resultado del recorrido aprobado].
 
-**Independent Test**: [Describe how this can be tested independently]
+Las dudas que impidan definir aceptación DEBEN identificarse como
+`PENDIENTE DE ACLARACIÓN: descripción` y resolverse antes de aprobar la spec.
 
-**Acceptance Scenarios**:
+### Interfaz y límites de acceso
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+[Si hay UI, definir estados de carga, vacío, error y éxito, accesibilidad por teclado,
+etiquetas y adaptación a escritorio y móvil. Si hay acceso restringido, definir actores,
+permisos y rechazo esperado. Indicar no aplica cuando corresponda.]
 
----
+### Entidades principales
 
-[Add more user stories as needed, each with an assigned priority]
+[Si hay datos, describir entidades, atributos relevantes y relaciones del dominio,
+sin prescribir detalles EF Core. Incluir datos iniciales únicamente si son necesarios.]
 
-### Edge Cases
+## Estrategia de verificación aprobada
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
+**Aceptación**: [Comprobaciones observables por historia].
+**Pruebas automatizadas**: [Aprobadas con alcance específico, o no solicitadas].
+**Pruebas de integración e infraestructura**: [Aprobación explícita y alcance, o no autorizadas].
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+Las pruebas e infraestructura NO DEBEN agregarse por defecto. El plan DEBE concretar
+la estrategia aprobada y las tareas DEBEN incluir su ejecución y evidencia.
 
-## Requirements *(mandatory)*
+## Criterios de éxito
 
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
+Los criterios DEBEN ser medibles y expresar resultados, sin depender de una implementación.
 
-### Functional Requirements
+- **CE-001**: [Resultado cuantificable del recorrido principal].
+- **CE-002**: [Resultado observable ante un fallo o caso límite].
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+## Supuestos y dependencias
 
-*Example of marking unclear requirements:*
-
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
-
-## Success Criteria *(mandatory)*
-
-<!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
--->
-
-### Measurable Outcomes
-
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
-
-## Assumptions
-
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right assumptions based on reasonable defaults
-  chosen when the feature description did not specify certain details.
--->
-
-- [Assumption about target users, e.g., "Users have stable internet connectivity"]
-- [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
-- [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
-- [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
+- [Supuesto fundamentado sobre usuarios, datos o entorno].
+- [Dependencia real y condición necesaria para comenzar].
+- [Iniciativas de menor número que deben completarse antes de implementar].
